@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Folder labels</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23345'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="labels.css">
+</head>
+<body>
+  <aside class="controls">
+    <h1>Folder labels</h1>
+    <p><a href="./">Back to the collection</a></p>
+    <p id="status" class="status" hidden></p>
+
+    <fieldset class="setup">
+      <legend>Split the collection into folders</legend>
+      <label>DVDs per folder
+        <input id="size" type="number" min="1" step="1" value="16">
+      </label>
+      <label>Count
+        <select id="mode">
+          <option value="titles">DVDs I have (skips unused numbers)</option>
+          <option value="numbers">Numbers (1–16, 17–32, …)</option>
+        </select>
+      </label>
+      <button id="rebuild" type="button">Split all again</button>
+    </fieldset>
+
+    <div id="warnings" class="warnings" hidden></div>
+
+    <table id="folders" class="folders">
+      <thead>
+        <tr>
+          <th scope="col">Print</th>
+          <th scope="col">From</th>
+          <th scope="col">To</th>
+          <th scope="col">DVDs</th>
+          <th scope="col"><span class="visually-hidden">Actions</span></th>
+        </tr>
+      </thead>
+      <tbody id="folder-rows"></tbody>
+    </table>
+    <p class="table-actions">
+      <button id="add" type="button">Add a folder</button>
+      <button id="print-all" type="button">Tick all</button>
+      <button id="print-none" type="button">Untick all</button>
+    </p>
+
+    <div class="print-box">
+      <button id="print" type="button">Print</button>
+      <p id="summary"></p>
+      <p class="hint">Each label is 4.6 cm wide and 11.8 cm tall. In the print dialog, keep the scale at 100% (not "fit to page"), or the labels come out smaller.</p>
+    </div>
+  </aside>
+
+  <main id="sheet" class="sheet"></main>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+  <script src="labels.js"></script>
+</body>
+</html>

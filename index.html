@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="color-scheme" content="light dark">
+  <title>DVD collection</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23345'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="bar">
+    <div class="bar-row">
+      <h1 id="site-title">DVD collection</h1>
+      <span id="count" class="count" aria-live="polite"></span>
+    </div>
+    <div class="bar-row">
+      <input id="q" type="search" placeholder="Search title or number" autocomplete="off" aria-label="Search title or number">
+      <button id="filters-toggle" type="button" aria-expanded="false" aria-controls="filters">Filters</button>
+      <button id="view-toggle" type="button">Table</button>
+    </div>
+    <div id="filters" class="filters" hidden>
+      <label>Seen
+        <select id="f-seen">
+          <option value="all">All</option>
+          <option value="unseen">Not seen yet</option>
+          <option value="seen">Seen</option>
+          <option value="liked">Liked</option>
+        </select>
+      </label>
+      <label>Audio
+        <select id="f-audio"><option value="">Any</option></select>
+      </label>
+      <label>Subtitles
+        <select id="f-subs"><option value="">Any</option></select>
+      </label>
+      <label>Length
+        <select id="f-maxlen">
+          <option value="0">Any</option>
+          <option value="90">Up to 1h 30</option>
+          <option value="105">Up to 1h 45</option>
+          <option value="120">Up to 2h</option>
+          <option value="150">Up to 2h 30</option>
+        </select>
+      </label>
+      <label>IMDb rating
+        <select id="f-minrating">
+          <option value="0">Any</option>
+          <option value="6">6 and up</option>
+          <option value="7">7 and up</option>
+          <option value="7.5">7.5 and up</option>
+          <option value="8">8 and up</option>
+        </select>
+      </label>
+      <label>Series
+        <select id="f-series"><option value="">Any</option></select>
+      </label>
+      <label>Genre
+        <select id="f-genre"><option value="">Any</option></select>
+      </label>
+      <label>Sort by
+        <select id="f-sort">
+          <option value="title:1">Title</option>
+          <option value="number:1">Number</option>
+          <option value="rating:-1">Rating, best first</option>
+          <option value="year:-1">Year, newest first</option>
+          <option value="year:1">Year, oldest first</option>
+          <option value="length:1">Length, shortest first</option>
+          <option value="length:-1">Length, longest first</option>
+        </select>
+      </label>
+      <button id="filters-reset" type="button">Reset</button>
+    </div>
+  </header>
+
+  <p id="status" class="status" hidden></p>
+
+  <main>
+    <div id="grid" class="grid"></div>
+    <table id="table" class="table" hidden>
+      <thead><tr id="table-head"></tr></thead>
+      <tbody id="table-body"></tbody>
+    </table>
+    <p id="empty" class="empty" hidden>
+      No titles match.
+      <button id="empty-reset" type="button">Clear search and filters</button>
+    </p>
+  </main>
+
+  <dialog id="detail" class="detail"></dialog>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
